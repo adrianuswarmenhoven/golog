@@ -6,7 +6,7 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/mndrix/golog/term"
+	"github.com/adrianuswarmenhoven/golog/term"
 )
 
 func RegisterHelp(m Machine, h map[string]string) {

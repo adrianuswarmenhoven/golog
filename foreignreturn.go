@@ -3,7 +3,7 @@ package golog
 // simulate an algebraic datatype representing the return value
 // of foreign predicates
 
-import "github.com/mndrix/golog/term"
+import "github.com/adrianuswarmenhoven/golog/term"
 
 // ForeignReturn represents the return type of ForeignPredicate functions.
 // Values of ForeignReturn indicate certain success or failure conditions

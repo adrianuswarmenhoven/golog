@@ -2,7 +2,7 @@ package term
 
 import "fmt"
 import "math/big"
-import . "github.com/mndrix/golog/util"
+import . "github.com/adrianuswarmenhoven/golog/util"
 
 // Number represents either an integer or a floating point number.  This
 // interface is convenient when working with arithmetic

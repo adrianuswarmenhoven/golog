@@ -12,8 +12,8 @@ import "math/big"
 import "math"
 import "strconv"
 import "strings"
-import "github.com/mndrix/golog/lex"
-import "github.com/mndrix/ps"
+import "github.com/adrianuswarmenhoven/golog/lex"
+import "github.com/adrianuswarmenhoven/ps"
 
 // Returned by Unify() if the unification fails
 var CantUnify error = Errorf("Can't unify the given terms")

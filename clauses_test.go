@@ -2,7 +2,7 @@ package golog
 
 import "testing"
 
-import "github.com/mndrix/golog/read"
+import "github.com/adrianuswarmenhoven/golog/read"
 
 func TestClauses(t *testing.T) {
 	rt := read.Term_ // convenience

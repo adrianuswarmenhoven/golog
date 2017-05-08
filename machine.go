@@ -47,13 +47,13 @@
 // which panics on error instead of returning an error value.
 //
 // See also:
-//  * Golog's architecture: https://github.com/mndrix/golog/blob/master/doc/architecture.md
+//  * Golog's architecture: https://github.com/adrianuswarmenhoven/golog/blob/master/doc/architecture.md
 //  * Built in and foreign predicates: See func Builtin...
 //  * Standard library: See golog/prelude package
 package golog
 
-import . "github.com/mndrix/golog/term"
-import . "github.com/mndrix/golog/util"
+import . "github.com/adrianuswarmenhoven/golog/term"
+import . "github.com/adrianuswarmenhoven/golog/util"
 
 import (
 	"bufio"
@@ -63,9 +63,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/mndrix/golog/prelude"
-	"github.com/mndrix/golog/read"
-	"github.com/mndrix/ps"
+	"github.com/adrianuswarmenhoven/golog/prelude"
+	"github.com/adrianuswarmenhoven/golog/read"
+	"github.com/adrianuswarmenhoven/ps"
 )
 
 // NoBarriers error is returned when trying to access a cut barrier that

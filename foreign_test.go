@@ -3,7 +3,7 @@ package golog
 // Tests for foreign predicates
 
 import "testing"
-import . "github.com/mndrix/golog/term"
+import . "github.com/adrianuswarmenhoven/golog/term"
 
 func TestDeterministic(t *testing.T) {
 	x := 0

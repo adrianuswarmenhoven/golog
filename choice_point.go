@@ -3,9 +3,9 @@ package golog
 import (
 	"fmt"
 
-	"github.com/mndrix/golog/term"
+	"github.com/adrianuswarmenhoven/golog/term"
 )
-import . "github.com/mndrix/golog/util"
+import . "github.com/adrianuswarmenhoven/golog/util"
 
 // ChoicePoint represents a place in the execution where we had a
 // choice between multiple alternatives.  Following a choice point
