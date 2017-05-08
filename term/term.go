@@ -12,8 +12,8 @@ import "math/big"
 import "math"
 import "strconv"
 import "strings"
-import "github.com/adrianuswarmenhoven/golog/lex"
-import "github.com/adrianuswarmenhoven/ps"
+import "github.com/mndrix/golog/lex"
+import "github.com/mndrix/ps"
 
 // Returned by Unify() if the unification fails
 var CantUnify error = Errorf("Can't unify the given terms")
@@ -430,6 +430,8 @@ func UnificationHash(terms []Term, n uint, preparation bool) uint64 {
 			if preparation {
 				hash = hash | mask
 			}
+		case Stringer:
+			hash = hash | (hashString(t.String()) & mask)
 		default:
 			msg := Sprintf("Unexpected term type %s\n", t)
 			panic(msg)
