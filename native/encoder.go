@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"reflect"
 
-	"github.com/mndrix/golog/term"
+	"github.com/adrianuswarmenhoven/golog/term"
 )
 
 type Encoder struct {

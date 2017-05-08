@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mndrix/golog"
-	"github.com/mndrix/golog/term"
+	"github.com/adrianuswarmenhoven/golog"
+	"github.com/adrianuswarmenhoven/golog/term"
 )
 
 type AllBools struct {

@@ -1,7 +1,7 @@
 package term
 
 import . "fmt"
-import "github.com/mndrix/golog/lex"
+import "github.com/adrianuswarmenhoven/golog/lex"
 
 type Error struct {
 	message string

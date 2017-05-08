@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/mndrix/golog"
-	"github.com/mndrix/golog/term"
+	"github.com/adrianuswarmenhoven/golog"
+	"github.com/adrianuswarmenhoven/golog/term"
 )
 
 func Encode(m golog.Machine, obj interface{}) golog.Machine {

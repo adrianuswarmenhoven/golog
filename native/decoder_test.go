@@ -3,9 +3,9 @@ package native
 import (
 	"testing"
 
-	"github.com/mndrix/golog"
-	"github.com/mndrix/golog/read"
-	"github.com/mndrix/golog/term"
+	"github.com/adrianuswarmenhoven/golog"
+	"github.com/adrianuswarmenhoven/golog/read"
+	"github.com/adrianuswarmenhoven/golog/term"
 )
 
 type MarshallerImpl struct {
