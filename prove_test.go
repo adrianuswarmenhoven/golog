@@ -87,9 +87,11 @@ func TestConjunction(t *testing.T) {
         floor_wax(shimmer).
         floor_wax(minwax).
 
-        dessert(shimmer).
-        dessert(cake).
-        dessert(pie).
+dessert(Item):-apple(Item).
+
+        apple(shimmer).
+        apple(cake).
+        apple(pie).
 
         verb(glimmer).
         verb(shimmer).

@@ -189,9 +189,21 @@ type machine struct {
 	largeForeign ps.Map                 // predicate indicator => ForeignPredicate
 
 	help map[string]string
+
+	explanation []string
 }
 
 func (*machine) IsaForeignReturn() {}
+
+func (m *machine) Explain(text string) Machine {
+	m1 := m.clone()
+	m1.explanation = append(m1.explanation, text)
+	return m1
+}
+
+func (m *machine) Explanation() []string {
+	return m.explanation
+}
 
 // NewMachine creates a new Golog machine.  This machine has the standard
 // library already loaded and is typically the way one obtains
@@ -200,41 +212,41 @@ func NewMachine() Machine {
 	return NewBlankMachine().
 		Consult(prelude.Prelude).
 		RegisterForeign(map[string]ForeignPredicate{
-			"!/0":             BuiltinCut,
-			"$cut_to/1":       BuiltinCutTo,
-			",/2":             BuiltinComma,
-			"->/2":            BuiltinIfThen,
-			";/2":             BuiltinSemicolon,
-			"=/2":             BuiltinUnify,
-			"=:=/2":           BuiltinNumericEquals,
-			"==/2":            BuiltinTermEquals,
-			"\\==/2":          BuiltinTermNotEquals,
-			"@</2":            BuiltinTermLess,
-			"@=</2":           BuiltinTermLessEquals,
-			"@>/2":            BuiltinTermGreater,
-			"@>=/2":           BuiltinTermGreaterEquals,
-			`\+/1`:            BuiltinNot,
-			"atom_codes/2":    BuiltinAtomCodes2,
-			"atom_number/2":   BuiltinAtomNumber2,
-			"call/1":          BuiltinCall,
-			"call/2":          BuiltinCall,
-			"call/3":          BuiltinCall,
-			"call/4":          BuiltinCall,
-			"call/5":          BuiltinCall,
-			"call/6":          BuiltinCall,
-			"downcase_atom/2": BuiltinDowncaseAtom2,
-			"fail/0":          BuiltinFail,
-			"findall/3":       BuiltinFindall3,
-			"ground/1":        BuiltinGround,
-			"is/2":            BuiltinIs,
-			"listing/0":       BuiltinListing0,
-			"msort/2":         BuiltinMsort2,
-			"printf/1":        BuiltinPrintf,
-			"printf/2":        BuiltinPrintf,
-			"printf/3":        BuiltinPrintf,
-			"succ/2":          BuiltinSucc2,
-			"var/1":           BuiltinVar1,
-		})
+		"!/0":             BuiltinCut,
+		"$cut_to/1":       BuiltinCutTo,
+		",/2":             BuiltinComma,
+		"->/2":            BuiltinIfThen,
+		";/2":             BuiltinSemicolon,
+		"=/2":             BuiltinUnify,
+		"=:=/2":           BuiltinNumericEquals,
+		"==/2":            BuiltinTermEquals,
+		"\\==/2":          BuiltinTermNotEquals,
+		"@</2":            BuiltinTermLess,
+		"@=</2":           BuiltinTermLessEquals,
+		"@>/2":            BuiltinTermGreater,
+		"@>=/2":           BuiltinTermGreaterEquals,
+		`\+/1`:            BuiltinNot,
+		"atom_codes/2":    BuiltinAtomCodes2,
+		"atom_number/2":   BuiltinAtomNumber2,
+		"call/1":          BuiltinCall,
+		"call/2":          BuiltinCall,
+		"call/3":          BuiltinCall,
+		"call/4":          BuiltinCall,
+		"call/5":          BuiltinCall,
+		"call/6":          BuiltinCall,
+		"downcase_atom/2": BuiltinDowncaseAtom2,
+		"fail/0":          BuiltinFail,
+		"findall/3":       BuiltinFindall3,
+		"ground/1":        BuiltinGround,
+		"is/2":            BuiltinIs,
+		"listing/0":       BuiltinListing0,
+		"msort/2":         BuiltinMsort2,
+		"printf/1":        BuiltinPrintf,
+		"printf/2":        BuiltinPrintf,
+		"printf/3":        BuiltinPrintf,
+		"succ/2":          BuiltinSucc2,
+		"var/1":           BuiltinVar1,
+	})
 }
 
 // NewBlankMachine creates a new Golog machine without loading the
@@ -245,6 +257,7 @@ func NewBlankMachine() Machine {
 	m.env = NewBindings()
 	m.disjs = ps.NewList()
 	m.conjs = ps.NewList()
+	m.explanation = []string{}
 
 	for i := 0; i < smallThreshold; i++ {
 		m.smallForeign[i] = ps.NewMap()

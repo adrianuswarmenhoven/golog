@@ -96,6 +96,7 @@ func BuiltinSemicolon(m Machine, args []term.Term) ForeignReturn {
 	cp := NewSimpleChoicePoint(m, args[1])
 	return m.PushDisj(cp).PushConj(args[0].(term.Callable))
 }
+
 func ifThenElse(m Machine, args []term.Term) ForeignReturn {
 	semicolon := args[0].(*term.Compound)
 	cond := semicolon.Arguments()[0]
