@@ -171,6 +171,9 @@ type Machine interface {
 	// produce a proof by giving some variable bindings.  When the machine
 	// has done as much work as it can do, it returns err=MachineDone
 	Step() (Machine, Bindings, error)
+
+	Explain(text string) Machine
+	Explanation() []string
 }
 
 // Golog allows Prolog predicates to be defined in Go.  The foreign predicate
