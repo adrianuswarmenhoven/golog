@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/adrianuswarmenhoven/golog/term"
-	"github.com/adrianuswarmenhoven/ps"
+	"github.com/adrianuswarmenhoven/golog/ps"
 )
 
 // clauses represents an ordered list of terms with

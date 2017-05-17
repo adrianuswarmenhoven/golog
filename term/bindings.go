@@ -1,7 +1,7 @@
 package term
 
 import "fmt"
-import "github.com/adrianuswarmenhoven/ps"
+import "github.com/adrianuswarmenhoven/golog/ps"
 
 // Returned by Bind() if the variable in question has already
 // been bound to a value.

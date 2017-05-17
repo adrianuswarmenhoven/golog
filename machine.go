@@ -65,7 +65,7 @@ import (
 
 	"github.com/adrianuswarmenhoven/golog/prelude"
 	"github.com/adrianuswarmenhoven/golog/read"
-	"github.com/adrianuswarmenhoven/ps"
+	"github.com/adrianuswarmenhoven/golog/ps"
 )
 
 // NoBarriers error is returned when trying to access a cut barrier that

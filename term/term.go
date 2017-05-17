@@ -13,7 +13,7 @@ import "math"
 import "strconv"
 import "strings"
 import "github.com/adrianuswarmenhoven/golog/lex"
-import "github.com/adrianuswarmenhoven/ps"
+import "github.com/adrianuswarmenhoven/golog/ps"
 
 // Returned by Unify() if the unification fails
 var CantUnify error = Errorf("Can't unify the given terms")

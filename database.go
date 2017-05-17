@@ -7,7 +7,7 @@ import . "github.com/adrianuswarmenhoven/golog/util"
 import (
 	"bytes"
 
-	"github.com/adrianuswarmenhoven/ps"
+	"github.com/adrianuswarmenhoven/golog/ps"
 )
 
 // Database is an immutable Prolog database.  All write operations on the
