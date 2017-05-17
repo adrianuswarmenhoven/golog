@@ -64,8 +64,8 @@ import (
 	"strings"
 
 	"github.com/adrianuswarmenhoven/golog/prelude"
-	"github.com/adrianuswarmenhoven/golog/read"
 	"github.com/adrianuswarmenhoven/golog/ps"
+	"github.com/adrianuswarmenhoven/golog/read"
 )
 
 // NoBarriers error is returned when trying to access a cut barrier that
@@ -166,14 +166,14 @@ type Machine interface {
 	// been registered replaces the predicate implementation.
 	RegisterForeign(map[string]ForeignPredicate) Machine
 
+	AddForeignContext(int, interface{}) Machine
+	GetForeignContext(int) []interface{}
+
 	// Step advances the machine one "step" (implementation dependent).
 	// It produces a new machine which can take the next step.  It might
 	// produce a proof by giving some variable bindings.  When the machine
 	// has done as much work as it can do, it returns err=MachineDone
 	Step() (Machine, Bindings, error)
-
-	Explain(text string) Machine
-	Explanation() []string
 }
 
 // Golog allows Prolog predicates to be defined in Go.  The foreign predicate
@@ -193,20 +193,10 @@ type machine struct {
 
 	help map[string]string
 
-	explanation []string
+	foreignContext [][]interface{}
 }
 
 func (*machine) IsaForeignReturn() {}
-
-func (m *machine) Explain(text string) Machine {
-	m1 := m.clone()
-	m1.explanation = append(m1.explanation, text)
-	return m1
-}
-
-func (m *machine) Explanation() []string {
-	return m.explanation
-}
 
 // NewMachine creates a new Golog machine.  This machine has the standard
 // library already loaded and is typically the way one obtains
@@ -260,7 +250,7 @@ func NewBlankMachine() Machine {
 	m.env = NewBindings()
 	m.disjs = ps.NewList()
 	m.conjs = ps.NewList()
-	m.explanation = []string{}
+	m.foreignContext = make([][]interface{}, 0, 0)
 
 	for i := 0; i < smallThreshold; i++ {
 		m.smallForeign[i] = ps.NewMap()
@@ -302,6 +292,22 @@ func (m *machine) RegisterForeign(fs map[string]ForeignPredicate) Machine {
 		}
 	}
 	return m1
+}
+
+func (m *machine) AddForeignContext(id int, item interface{}) Machine {
+	m1 := m.clone()
+	for id < len(m1.foreignContext) {
+		m1.foreignContext = append(m1.foreignContext, []interface{}{})
+	}
+	m1.foreignContext[id] = append(m1.foreignContext[id], item)
+	return m1
+}
+
+func (m *machine) GetForeignContext(id int) []interface{} {
+	if id < len(m.foreignContext) {
+		return m.foreignContext[id]
+	}
+	return []interface{}{}
 }
 
 func (m *machine) String() string {
