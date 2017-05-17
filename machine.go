@@ -296,7 +296,7 @@ func (m *machine) RegisterForeign(fs map[string]ForeignPredicate) Machine {
 
 func (m *machine) AddForeignContext(id int, item interface{}) Machine {
 	m1 := m.clone()
-	for id < len(m1.foreignContext) {
+	for id > len(m1.foreignContext) {
 		m1.foreignContext = append(m1.foreignContext, []interface{}{})
 	}
 	m1.foreignContext[id] = append(m1.foreignContext[id], item)
