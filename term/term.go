@@ -6,14 +6,17 @@
 // The current term API is messy and will definitely change in the future.
 package term
 
-import . "fmt"
-import . "regexp"
-import "math/big"
-import "math"
-import "strconv"
-import "strings"
-import "github.com/adrianuswarmenhoven/golog/lex"
-import "github.com/adrianuswarmenhoven/golog/ps"
+import (
+	. "fmt"
+	"math"
+	"math/big"
+	. "regexp"
+	"strconv"
+	"strings"
+
+	"github.com/adrianuswarmenhoven/golog/lex"
+	"github.com/adrianuswarmenhoven/golog/ps"
+)
 
 // Returned by Unify() if the unification fails
 var CantUnify error = Errorf("Can't unify the given terms")
