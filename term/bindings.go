@@ -43,6 +43,8 @@ type Bindings interface {
 	// WithNames returns a new bindings with human-readable names attached
 	// for convenient lookup.  Panics if names have already been attached.
 	WithNames(ps.Map) Bindings
+
+	PairingKey() string
 }
 
 // NewBindings returns a new, empty bindings value.
@@ -138,4 +140,16 @@ func (self *envMap) WithNames(names ps.Map) Bindings {
 	b := self.clone()
 	b.names = names
 	return b
+}
+
+func (self *envMap) PairingKey() (pairkey string) {
+	n := false
+	self.bindings.ForEach(func(key string, val interface{}) {
+		pairkey += fmt.Sprintf("%v ", val)
+		if n {
+			pairkey += "\n"
+		}
+		n = !n
+	})
+	return
 }

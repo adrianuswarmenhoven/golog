@@ -52,10 +52,10 @@
 //  * Standard library: See golog/prelude package
 package golog
 
-import . "github.com/adrianuswarmenhoven/golog/term"
-import . "github.com/adrianuswarmenhoven/golog/util"
-
 import (
+	. "github.com/adrianuswarmenhoven/golog/term"
+	. "github.com/adrianuswarmenhoven/golog/util"
+
 	"bufio"
 	"bytes"
 	"fmt"
@@ -102,8 +102,10 @@ type Machine interface {
 	// All three accept Prolog terms as strings or as io.Reader objects from
 	// which Prolog terms can be read.
 	CanProve(interface{}) bool
+	CanProveParallel(interface{}) bool
 	Consult(interface{}) Machine
 	ProveAll(interface{}) []Bindings
+	ProveAllParallel(interface{}) []Bindings
 
 	String() string
 
@@ -174,6 +176,9 @@ type Machine interface {
 	// produce a proof by giving some variable bindings.  When the machine
 	// has done as much work as it can do, it returns err=MachineDone
 	Step() (Machine, Bindings, error)
+	StepParallel() (Machine, []Bindings, error)
+
+	DEBUG() //Do whatever I Need
 }
 
 // Golog allows Prolog predicates to be defined in Go.  The foreign predicate
